@@ -1,0 +1,55 @@
+def check(i,j,s):
+    left=right=0
+    if s[i]=="[" and s[j]=="]":
+        for t in range(i+1,j):
+            if s[t]=="[":
+                left+=1
+            elif s[t]=="]":
+                right+=1
+            if right>left:
+                return False
+        return right==left
+    return False
+
+def countAtoms(s):
+    res=""
+    for i in s:
+        if i=="(":
+            res+="["
+        elif i==")":
+            res+="]"
+        else:
+            res+=i
+    while res.count("[")>0:
+        for i in range(len(res)-1):
+            try:
+                if res[i]=="[":
+                    for t in range(i+1,len(res)):
+                        if check(i,t,res):
+                            track=i-1
+                            if track<0:
+                                res=res[1:t:]+res[t+1::]
+                            else:
+                                num=0
+                                ex=0
+                                track=i-1
+                                print(track)
+                                while res[track].isdigit() and track>=0 :
+                                    num=num+int(res[track])*10**ex
+                                    ex+=1
+                                    track-=1
+                                
+                                if track==i-1:
+                                    res= res[:track+1:]+res[track+2:t:]+res[t+1::]
+                                else:
+                                    
+                                    res=res[:track+1:] + (num)*res[i+1:t:] + res[t+1::]
+                                    
+                else:
+                    pass
+                            
+            except:
+                pass
+    
+    
+    return res
