@@ -1,3 +1,4 @@
+##function to check the true ()
 def check(i,j,s):
     left=right=0
     if s[i]=="[" and s[j]=="]":
@@ -10,7 +11,7 @@ def check(i,j,s):
                 return False
         return right==left
     return False
-
+## function to operate the desire request
 def countAtoms(s):
     res=""
     for i in s:
