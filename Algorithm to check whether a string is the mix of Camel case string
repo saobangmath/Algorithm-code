@@ -1,0 +1,20 @@
+def camelCaseSeparation(words, variableName):
+    lst=[i.capitalize() for i in words]
+    beg=0
+    end=0
+    
+    
+    while end<len(variableName)-1:
+        if variableName[end+1].isupper():
+            if  (variableName[beg:end+1:] in lst or variableName[beg:end+1:] in words):
+                
+                beg=end+1
+                end+=1
+                
+            else:
+                return False
+        else:
+                    
+            end+=1
+    return (variableName[beg:end+1:] in lst or variableName[beg:end+1:] in words)
+    return True
