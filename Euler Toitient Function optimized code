@@ -1,0 +1,17 @@
+def eulersTotientFunction(n):
+    divisor = 2
+    result = n
+
+    while divisor * divisor < n:
+        #find a divisor of n and divide n to such div until it could not divide anymore
+        if n % divisor == 0: #notice that each divisor in each stage is actually a prime!Indeed, if it is not a prime, hence, it has i<divisor divided by. which is contradict to the fact that n has previously fully divide the divisor i which < our current divisor.                                    
+            while n % divisor == 0:
+                n /= divisor
+            # calculating the number of integer between 1,n need to be eliminated as divided by divisor and not divided by others smaller prime.               
+            result -= result / divisor 
+            ## to explain this formula with 1 example: p1 is the first prime divisor of n, after 1st try result=n-(n/p1) is the no of number <=n and relatively prime to p1,Let p2 is the second prime, then (n/p2-n/(p2*p1)) is no of integer<=n that not divide p1 but divided by p2, on the otherhand, this result could by written as the (previous result)/p2 WHICH IS THE NUMBER OF INTEGER DIVIDED BY  p1 OR p2, hence the result of RELATIVE prime is UPDATED TO (previous result)-(previous result/p2). With continueing this Algorithm, we will arrive the athrimetic expression like above
+        divisor += 1
+    if n > 1: # this happen in the case that n has only 1 prime >sqrt(n) which is divided by n.
+        result -= result / n
+
+    return result
