@@ -1,0 +1,44 @@
+def right_bfs(i,j,plan):
+    for t in range(j+1,len(plan[0])):
+        for u in range(len(plan)):
+            if (abs(t-j)>=abs(i-u)):
+        
+def left_bfs(i,j,plan):
+   
+    for t in range(j):
+        for u in range(len(plan)):
+            if (abs(t-j)>=abs(i-u)):
+                plan[u][t]='#'
+    
+def up_bfs(i,j,plan):
+    for t in range(len(plan[0])):
+        for u in range(i):
+            if (abs(t-j)<=abs(i-u)):
+                plan[u][t]='#'
+    
+    
+def down_bfs(i,j,plan):
+   
+    for t in range(len(plan[0])):
+        for u in range(i+1,len(plan)):
+            if (abs(t-j)<=abs(i-u)):
+                plan[u][t]='#'
+def fillShortestPaths(plan):
+    for i in range(len(plan)):
+        for j in range(len(plan[0])):
+            if plan[i][j]=='s':
+                y=i
+                x=j
+                break
+    min_value=min(min(x,len(plan[0])-x-1),min(y,len(plan)-y-1))
+    if x==min_value:
+         left_bfs(y,x,plan)
+    if len(plan[0])-x-1==min_value:
+         right_bfs(y,x,plan)
+    if y==min_value:
+         up_bfs(y,x,plan)
+    if len(plan)-y-1==min_value:
+         down_bfs(y,x,plan)
+    plan[y][x]='s'
+    return plan
+        
