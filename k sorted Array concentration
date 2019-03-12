@@ -1,0 +1,18 @@
+def mergeKArrays(arrays):
+    firstUnused = []
+    result = []
+    n = 0
+    for i in range(len(arrays)):
+        firstUnused.append(0)
+        n += len(arrays[i])
+    for i in range(n):
+        minIndex = -1
+        minValue = 0
+        for j in range(len(arrays)):
+            if firstUnused[j] < len(arrays[j]):
+                if (arrays[j][firstUnused[j]]<=minValue) or (minValue==0 and minIndex==-1) :
+                    minIndex = j
+                    minValue = arrays[j][firstUnused[j]]
+        result.append(minValue)
+        firstUnused[minIndex] += 1
+    return result
