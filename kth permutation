@@ -1,0 +1,37 @@
+def factory(n,k):
+    res=[0 for _ in range(n)]
+    u=k
+    for i in range(n):
+        if (n-i-1>=14):
+            res[i]=0
+        else:
+            if (u>0):
+                if (u//math.factorial(n-i-1)>=n-i):
+                    u-=(math.factorial(n-i-1))*(n-i-1)
+
+                    res[i]= n-i-1
+                else:
+                    res[i]=u//math.factorial(n-i-1)
+                    u-=(u//math.factorial(n-i-1))* math.factorial(n-i-1)
+            
+    
+    return res
+
+
+
+
+def permutationSequence(n, k):
+    initial=[i for i in range(1,n+1)]
+    factor=factory(n,k-1)
+    res=""
+    print(factory(n,k-1))
+    
+    for t in factor:
+        try:
+            res+=str(initial.pop(t))
+            
+        except:
+            pass
+    res+="".join([str(i) for i in initial])
+    return res
+    
