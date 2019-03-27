@@ -1,0 +1,15 @@
+def prefixFunctionNaive(s):
+    next=[0 for i in s]       #the array of longest substring of s[:i:] that is both prefix and suffix of s[:i:]
+    for t in range(1,len(s)):
+        store=t
+        while (store>0):
+            if (s[t]==s[next[store-1]]):  # if the next character is similar to our considered character then we could calculate next[] value 
+                next[store]=next[store-1]+1
+                break
+            else:
+                store=next[store]      # backtracking to the most suitable position that the longest substring could be ..
+        if store==0:
+            next[t]=0
+    return dp
+            
+##the KMP algorithm for 2 strings is conceptually similar to what the next construction do!!!!##
