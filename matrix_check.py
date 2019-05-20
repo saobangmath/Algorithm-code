@@ -23,13 +23,13 @@ def show(board):
     print("##########")
 board=[[-1 for i in range(4)] for j in range(4)]
 mark=[False for i in range(16)]
-res=[]
+
+# backtracking algorithm 
+# the algorithm might need some optimizations for other big value of square length ( in this case is just 4)
 def backtrack(board,r,c):
     if (r==4):
         if (board not in res):
             show(board)
-            return
-
     else:
         if (c == 3):
             for num in range(16):
