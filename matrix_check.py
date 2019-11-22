@@ -3,6 +3,9 @@ def check(r):
         if (i==-1):
             return False
     return True
+# sorted by increasing order with first element then decreasing order with second element
+def key(x):
+    return (x[0], ~x[1])
 
 def check_valid(b):
     for e in b:
